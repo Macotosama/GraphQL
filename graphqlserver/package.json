@@ -1,0 +1,17 @@
+{
+  "name": "graphqlserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-type-json": "^0.3.2",
+    "graphql-yoga": "^1.18.3",
+    "node-fetch": "^2.6.0"
+  }
+}
