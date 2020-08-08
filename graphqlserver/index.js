@@ -1,3 +1,7 @@
+var express = require('express');
+const cors = require('cors')
+const bodyParser = require('body-parser');
+var { graphqlHTTP } = require('express-graphql');
 const { GraphQLScalarType } = require ('graphql')
 const { GraphQLServer } = require('graphql-yoga')
 const  fetch  = require('node-fetch')
@@ -36,9 +40,31 @@ const resolvers = {
         }
     },
 }
+
 const server = new GraphQLServer({
     typeDefs,
     resolvers
   });
   
+
+//Seccion de solicitudes del servidor 
+//server.use('/localhost:4000',baseURL2({}))
+//
+
 server.start(() => console.log(`Server is running on http://localhost:4000...`));
+
+
+// var app = express(); http://localhost:4000/persons
+
+// app.use(bodyParser.json())
+
+// app.use(cors())
+
+
+// app.use('/graphql', graphqlHTTP({
+//   schema: typeDefs,
+//   rootValue: resolvers.persons,
+//   graphiql: true,
+// }));
+// app.listen(4000);
+// console.log('Running a GraphQL API server at http://localhost:4000/graphql');
