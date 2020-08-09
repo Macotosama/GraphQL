@@ -12,6 +12,95 @@ const baseURL2 = `http://localhost:8000/Persons`
 const typeDefs =
 ` type Query {
     persons: [Person]
+    productos: [Producto]
+    ventas: [Venta]
+    vendedores: [vendedor]
+    proveedores: [Proveedor]
+    topProductosMejoresVendidos: [topProducto]
+}
+
+type topProducto {
+    ProductID: Int
+    ProductName: String
+    ProductNumber: String
+    UnitPrice: Float
+    Color: String
+    ProductLine: String
+    Style: String
+    SellStartDate:String
+    SellEndDate: String
+    Size: String
+    SubCategory: String
+    CategoryName: String
+    ProductModel: String
+}
+
+type Proveedor {
+    BusinessEntityID: Int
+    Name: String
+    PurchasingWebServiceURL: String
+    AccountNumber: Int
+    MaxOrderQty: Int
+    MinOrderQty: Int
+    StandardPrice: Float
+    Product: String
+    ProductCategory: String
+    StandardCost: Float
+    OrderQty: Int
+    RejectedQty: Float
+    ReceivedQty: Float
+    StockedQty: Float
+    SubTotal: Float    
+}
+
+type vendedor {
+    BusinessEntityID: Int
+    FullName: String
+    SalesQuota: Float
+    JobCandidateID: Int
+    Gender: String
+    VacationHours: Int
+    OrganizationLevel: Int
+    SickLeaveHours: String
+    PayFrequency: Int
+    Rate: Float
+    CommissionPct: Float
+    SalesLastYear: Float
+    DepartmentName: String
+    GroupName: String
+
+}
+
+type Venta {
+    SalesOrderID: Int
+    ProductID: Int
+    RevisionNumber: Int
+    Description: String
+    UnitPrice: Float
+    CustomerID: Int
+    FullNameCustomer: String
+    FullNameSalesPerson: String
+    Bonus: Float
+    SalesLastYear: Float
+    CommissionPct: Float
+}
+
+type Producto {
+    ProductID: Int
+    ProductName: String 
+    ProductNumber: String 
+    UnitPrice: Float
+    Color: String
+    ProductLine: String
+    Style: String
+    SellStartDate: String
+    SellEndDate: String
+    Size: String
+    SubCategory: String
+    CategoryName: String
+    ProductModel: String
+    Quantity: Int
+    LocationName: String
 }
 
 type Person {
@@ -35,6 +124,36 @@ const resolvers = {
         persons: async() =>{
 
             const response = await fetch(`${baseURL}Persons`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        productos:async() =>{
+
+            const response = await fetch(`${baseURL}Products`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        ventas:async() =>{
+
+            const response = await fetch(`${baseURL}Sells`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        vendedores :async() =>{
+
+            const response = await fetch(`${baseURL}Sellers`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        proveedores :async() =>{
+
+            const response = await fetch(`${baseURL}Proveedors`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        topProductosMejoresVendidos:async() =>{
+
+            const response = await fetch(`${baseURL}topProductos`);
             return response.json();            
             return fetch(baseURL2).then(res=>res.json())
         }
