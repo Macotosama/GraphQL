@@ -19,7 +19,9 @@ app.get('/Sells',persons.getVentas)
 app.get('/Sellers',persons.getVendedores)
 app.get('/Proveedors',persons.getProvedores)
 app.get('/topProductos',persons.getTopMejoresVendidos)
-
+app.get('/Locations',persons.getLocaciones)
+app.get('/AllProcutLocation/:Location',persons.getAllProcutLocation)
 var server = app.listen(configPortAndSettings.webPort, function () {
     console.log(`Server is running at ${configPortAndSettings.webPort}`);
 });
+

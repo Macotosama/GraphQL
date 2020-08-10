@@ -7,8 +7,8 @@ const { GraphQLServer } = require('graphql-yoga')
 const  fetch  = require('node-fetch')
 
 const baseURL = `http://localhost:8000/`
-const baseURL2 = `http://localhost:8000/Persons`
-
+const baseURL2 = `http://localhost:8000/`
+const baseURL3 = `http://localhost:8000/AllProcutLocation/`
 const typeDefs =
 ` type Query {
     persons: [Person]
@@ -17,6 +17,15 @@ const typeDefs =
     vendedores: [vendedor]
     proveedores: [Proveedor]
     topProductosMejoresVendidos: [topProducto]
+    locaciones: [Locacion]
+    optenerlocaciones(LocationName: String): [Optenerlocacion]
+}
+type Optenerlocacion {
+    Name: String
+    Quantity: Int
+}
+type Locacion { 
+    LocationName: String
 }
 
 type topProducto {
@@ -156,6 +165,21 @@ const resolvers = {
             const response = await fetch(`${baseURL}topProductos`);
             return response.json();            
             return fetch(baseURL2).then(res=>res.json())
+        },
+
+        locaciones:async() =>{
+
+            const response = await fetch(`${baseURL}Locations`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        
+        optenerlocaciones:async(_, args) =>{
+           // const { Location } = args
+            //return console.log(`${baseURL3}${args}`)
+            const response = await fetch(encodeURI(`${baseURL3}${args.LocationName}`));
+            return response.json();            
+            
         }
     },
 }

@@ -237,3 +237,52 @@ exports.getTopMejoresVendidos = function(req, resp){
         }
     });
 };
+
+exports.getLocaciones = function(req, resp){
+    db.executeSQL("select distinct ( AdventureWorks2017.Production.Location.Name)LocationName  from "
+    +" AdventureWorks2017.Production.Location "
+    +" order by LocationName ",  function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getAllProcutLocation = function(req, resp){
+    const par = "'"
+    //return console.log("Execute procReturnAllProcutLocation "+par+(req.params.Location)+par+"".toString())
+    
+    db.executeSQL("Execute procReturnAllProcutLocation "+par+(req.params.Location)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+function funcion(req){
+    var parm1; 
+    var parm2;
+    var parm3;
+    for (let index = 0; index < req.length; index++) {
+        if(req[index] == " "){
+            for (let index2 = index; index2 < req.length; index2++) {
+                
+            }  
+        }
+        const parm1 =+ req[index];
+        
+    }
+}
+
+
+
+
+
