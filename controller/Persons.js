@@ -267,20 +267,179 @@ exports.getAllProcutLocation = function(req, resp){
     });
 };
 
-function funcion(req){
-    var parm1; 
-    var parm2;
-    var parm3;
-    for (let index = 0; index < req.length; index++) {
-        if(req[index] == " "){
-            for (let index2 = index; index2 < req.length; index2++) {
-                
-            }  
+exports.getProcInforVendedorEnRecursosHumanos = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInforVendedorEnRecursosHumanos "+par+(req.params.Info)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
         }
-        const parm1 =+ req[index];
-        
-    }
-}
+    });
+};
+
+exports.getProcCreditCard = function(req, resp){
+
+    db.executeSQL("Execute procCreditCard".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getProcTerritory = function(req, resp){
+
+    db.executeSQL("Execute procTerritory".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+exports.getProcShoppingCartItem = function(req, resp){
+
+    db.executeSQL("Execute procShoppingCartItem".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getProcSalesTaxRate = function(req, resp){
+
+    db.executeSQL("Execute procSalesTaxRate".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+
+exports.filtroProcDistribuidores = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute procDistribuidores "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.filtroProcVendedores = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute procVendedores "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.filtroProcPersosnCustomer = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute procPersosnCustomer "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+exports.getTopPeoresVendidos = function(req, resp){
+    db.executeSQL("select DISTINCT TOP 6 "
+    +" AdventureWorks2017.Production.Product.ProductID, "
+    +" AdventureWorks2017.Production.Product.Name ProductName, "
+    +" AdventureWorks2017.Production.Product.ProductNumber ProductNumber, "
+    +" (select AdventureWorks2017.dbo.Tacataca(Product.ProductID) ) as UnitPrice, "
+    +" AdventureWorks2017.Production.Product.Color, "
+    +" AdventureWorks2017.Production.Product.ProductLine, "
+    +" AdventureWorks2017.Production.Product.Style, "
+    +" AdventureWorks2017.Production.Product.SellStartDate, "
+    +" AdventureWorks2017.Production.Product.SellEndDate, "
+    +" AdventureWorks2017.Production.Product.Size, "
+    +" (AdventureWorks2017.Production.ProductSubcategory.Name)SubCategory, "
+    +" (AdventureWorks2017.Production.ProductCategory.Name)CategoryName, "
+    +" (AdventureWorks2017.Production.ProductModel.Name)ProductModel "
+    
+    +" from AdventureWorks2017.Production.Product "
+    +" inner join AdventureWorks2017.Sales.SalesOrderDetail "
+    +" on AdventureWorks2017.Production.Product.ProductID = AdventureWorks2017.Sales.SalesOrderDetail.ProductID "
+    +" inner join AdventureWorks2017.Production.ProductSubcategory "
+    +" on AdventureWorks2017.Production.Product.ProductSubcategoryID = AdventureWorks2017.Production.ProductSubcategory.ProductSubcategoryID "
+    +" inner join AdventureWorks2017.Production.ProductCategory "
+    +" on AdventureWorks2017.Production.ProductSubcategory.ProductCategoryID = AdventureWorks2017.Production.ProductCategory.ProductCategoryID "
+    +" inner join AdventureWorks2017.Production.ProductModel "
+    +" on AdventureWorks2017.Production.Product.ProductModelID = AdventureWorks2017.Production.ProductModel.ProductModelID "  
+    +" inner join AdventureWorks2017.Production.ProductInventory "
+    +" on AdventureWorks2017.Production.Product.ProductID = AdventureWorks2017.Production.ProductInventory.ProductID "
+    +" inner join AdventureWorks2017.Production.Location "
+    +" on AdventureWorks2017.Production.ProductInventory.LocationID = AdventureWorks2017.Production.Location.LocationID "
+    +" group by AdventureWorks2017.Production.Product.ProductID, AdventureWorks2017.Production.Product.Name, "
+    +" AdventureWorks2017.Production.Product.ProductNumber, "
+    +" UnitPrice, "
+    +" AdventureWorks2017.Production.Product.Color, "
+    +" AdventureWorks2017.Production.Product.ProductLine, "
+    +" AdventureWorks2017.Production.Product.Style, "
+    +" AdventureWorks2017.Production.Product.SellStartDate, "
+    +" AdventureWorks2017.Production.Product.SellEndDate, "
+    +" AdventureWorks2017.Production.Product.Size, "
+    +" AdventureWorks2017.Production.ProductSubcategory.Name, "
+    +" AdventureWorks2017.Production.ProductCategory.Name, "
+    +" AdventureWorks2017.Production.ProductModel.Name "
+    
+    +" order by UnitPrice asc, "
+    +" AdventureWorks2017.Production.Product.ProductID, AdventureWorks2017.Production.Product.Name, "
+    +" AdventureWorks2017.Production.Product.ProductNumber, "
+    +" AdventureWorks2017.Production.Product.Color, "
+    +" AdventureWorks2017.Production.Product.ProductLine, "
+    +" AdventureWorks2017.Production.Product.Style, "
+    +" AdventureWorks2017.Production.Product.SellStartDate, "
+    +" AdventureWorks2017.Production.Product.SellEndDate, "
+    +" AdventureWorks2017.Production.Product.Size, "
+    +" AdventureWorks2017.Production.ProductSubcategory.Name, "
+    +" AdventureWorks2017.Production.ProductCategory.Name, "
+    +" AdventureWorks2017.Production.ProductModel.Name",  function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
 
 
 
