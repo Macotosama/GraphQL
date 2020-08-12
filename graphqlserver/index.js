@@ -13,6 +13,8 @@ const baseURL4 = `http://localhost:8000/InforVendedorEnRecursosHumanos/`
 const baseURL5 = `http://localhost:8000/getProcDistribuidores/` 
 const baseURL6 = `http://localhost:8000/getProcPersosnCustomer/`
 const baseURL7 = `http://localhost:8000/getProcVendedores/`
+const baseURL8 = `http://localhost:8000/getprocInsertarEnAuditoria/`
+const baseURL9 = `http://localhost:8000/getProcNoBorrar/`
 const typeDefs =
 ` type Query {
     persons: [Person]
@@ -31,15 +33,27 @@ const typeDefs =
     optenerProcSalesTaxRates: [optenerProcSalesTaxRate]
     optenerProcDistribuidores(Product: String, Distribuidor: String, BusinessEntityID: Int): [Proveedor] 
     optenerProcVendedores(FullName: String): [vendedor]
-    optenerProcPersosnCustomer(PersonID: Int ,ProductName: String ,FirstName: String, LastName: String): [Person]
+    optenerProcPersosnCustomer(PersonID: Int ,MiddleName: String ,FirstName: String, LastName: String): [Person]
     peoples: [People]
+    mensajes(Identificador: Int): [Mensaje]
+    noborrados(Identificador: Int): [Mensaje]
+    auditorias: [auditoria]
 } 
-
+type auditoria {
+    idAuditoria: Int
+    Tabla: String
+    Accion: String
+    Fecha: String
+    Mensaje: String
+}
+type Mensaje{
+    info: String
+}
 type People {
     BusinessEntityID: Int
     FirstName: String
     LastName: String
-}
+}                       
 
 type optenerProcSalesTaxRate {
     SalesTaxRateID: Int
@@ -114,7 +128,7 @@ type Proveedor {
     BusinessEntityID: Int
     Name: String
     PurchasingWebServiceURL: String
-    AccountNumber: Int
+    
     MaxOrderQty: Int
     MinOrderQty: Int
     StandardPrice: Float
@@ -201,6 +215,12 @@ const resolvers = {
             return response.json();            
             return fetch(baseURL2).then(res=>res.json())
         },
+        auditorias:async() =>{
+
+            const response = await fetch(`${baseURL}tablaAuditoria`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
         productos:async() =>{
 
             const response = await fetch(`${baseURL}Products`);
@@ -258,12 +278,17 @@ const resolvers = {
              
          },
          optenerProcDistribuidores:async(_, args) =>{
-            const response = await fetch(encodeURI(`${baseURL5}${args.IdentificadorVendedor,arg.Distribuidor,arg.BusinessEntityID}`));
+            const response = await fetch(encodeURI(`${baseURL5}${args.IdentificadorVendedor,args.Distribuidor,args.BusinessEntityID}`));
+            return response.json();            
+            
+        },
+        mensajes:async(_, args) =>{
+            const response = await fetch(encodeURI(`${baseURL8}${args.Identificador}`));
             return response.json();            
             
         },
         optenerProcPersosnCustomer:async(_, args) =>{
-            const response = await fetch(encodeURI(`${baseURL6}${args.PersonID,args.ProductName,args.FirstName,args.LastName}`));
+            const response = await fetch(encodeURI(`${baseURL6}${args.PersonID,args.MiddleName,args.FirstName,args.LastName}`));
             return response.json();            
             
         },
@@ -302,7 +327,13 @@ const resolvers = {
             const response = await fetch(`${baseURL7}${args.FullName}`);
             return response.json();            
             return fetch(baseURL2).then(res=>res.json())
-        }
+        },
+        noborrados:async(_, args) =>{
+
+            const response = await fetch(`${baseURL9}${args.Identificador}`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
 
     },
 }

@@ -29,9 +29,11 @@ app.get('/procShoppingCartItem',persons.getProcShoppingCartItem)
 app.get('/procSalesTaxRate',persons.getProcSalesTaxRate)
 app.get('/getProcDistribuidores/:par1/:par2/par3',persons.filtroProcDistribuidores)
 app.get('/getProcVendedores/:par1',persons.filtroProcVendedores)
-app.get('/getProcPersosnCustomer/:par1/:par2/par3/:par4',persons.filtroProcPersosnCustomer)
+app.get('/getProcPersosnCustomer/:par1',persons.filtroProcPersosnCustomer)
 app.get('/getAllPeople',persons.getAllPeopele)
-
+app.get('/getprocInsertarEnAuditoria/:par1',persons.getProcInsertarEnAuditoria)
+app.get('/getProcNoBorrar/:par1',persons.getProNoBorrar)
+app.get('/tablaAuditoria',persons.getTablaAuditoria)
 var server = app.listen(configPortAndSettings.webPort, function () {
     console.log(`Server is running at ${configPortAndSettings.webPort}`);
 });

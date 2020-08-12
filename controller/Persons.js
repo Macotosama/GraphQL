@@ -11,7 +11,17 @@ exports.getPersons = function(req, resp){
         }
     });
 };
-
+exports.getTablaAuditoria = function(req, resp){
+    db.executeSQL("Select * from AdventureWorks2017.dbo.Auditoria",  function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
 exports.getProducts = function(req, resp){
     db.executeSQL("select AdventureWorks2017.Production.Product.ProductID,(AdventureWorks2017.Production.Product.Name)ProductName,"
    +" (AdventureWorks2017.Production.Product.ProductNumber)ProductNumber,"
@@ -133,11 +143,11 @@ exports.getVendedores = function(req, resp){
 
 
 exports.getProvedores = function(req, resp){
-    db.executeSQL("select "
+    db.executeSQL("select top 1000"
     +" AdventureWorks2017.Purchasing.ProductVendor.BusinessEntityID, "
     +" AdventureWorks2017.Purchasing.Vendor.Name, "
     +" AdventureWorks2017.Purchasing.Vendor.PurchasingWebServiceURL, "
-    +" AdventureWorks2017.Purchasing.Vendor.AccountNumber, "
+   // +" AdventureWorks2017.Purchasing.Vendor.AccountNumber, "
     +" AdventureWorks2017.Purchasing.ProductVendor.MaxOrderQty, "
     +" AdventureWorks2017.Purchasing.ProductVendor.MinOrderQty, "
     +" AdventureWorks2017.Purchasing.ProductVendor.StandardPrice, "
@@ -265,8 +275,45 @@ exports.getAllProcutLocation = function(req, resp){
             
         }
     });
+}; 
+exports.getProcInsertarEnAuditoria = function(req, resp){
+    const par = "'"
+    const parametro = Math.floor(Math.random() * 101);  
+    db.executeSQL("Execute procInsertarEnAuditoria "+par+(req.params.par1)+par+","+par+(parametro)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
 };
-
+exports.getProcInsertarEnAuditoria = function(req, resp){
+    const par = "'"
+    const parametro = Math.floor(Math.random() * 101);  
+    db.executeSQL("Execute procInsertarEnAuditoria "+par+(req.params.par1)+par+","+par+(parametro)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};exports.getProNoBorrar = function(req, resp){
+    const par = "'"
+    const parametro = Math.floor(Math.random() * 101);  
+    db.executeSQL("Execute noBorrar "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
 exports.getProcInforVendedorEnRecursosHumanos = function(req, resp){
     const par = "'"
 
@@ -319,6 +366,8 @@ exports.getProcShoppingCartItem = function(req, resp){
     });
 };
 
+
+
 exports.getProcSalesTaxRate = function(req, resp){
 
     db.executeSQL("Execute procSalesTaxRate".toString(),function (data, err){
@@ -364,9 +413,9 @@ exports.filtroProcVendedores = function(req, resp){
 
 exports.filtroProcPersosnCustomer = function(req, resp){
     const par = "'"
-    const coma = ","
 
-    db.executeSQL("Execute procPersosnCustomer "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+
+    db.executeSQL("Execute procPersosnCustomer "+par+(req.params.par1)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
