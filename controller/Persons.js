@@ -1,7 +1,7 @@
 var db = require('../baseDeDatos/db');
 
 exports.getPersons = function(req, resp){
-    db.executeSQL("select BusinessEntityID,PersonType,convert(int,NameStyle)NameStyle,Title,FirstName,MiddleName,LastName,Suffix,EmailPromotion,convert (varchar(max),AdditionalContactInfo)AdditionalContactInfo,convert (varchar(max),Demographics)Demographics,rowguid,ModifiedDate from AdventureWorks2017.Person.Person ORDER BY BusinessEntityID ",  function (data, err){
+    db.executeSQL("select top 100 BusinessEntityID,PersonType,convert(int,NameStyle)NameStyle,Title,FirstName,MiddleName,LastName,Suffix,EmailPromotion,convert (varchar(max),AdditionalContactInfo)AdditionalContactInfo,convert (varchar(max),Demographics)Demographics,rowguid,ModifiedDate from AdventureWorks2017.Person.Person ORDER BY BusinessEntityID ",  function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -47,7 +47,7 @@ exports.getProducts = function(req, resp){
 
 
 exports.getVentas = function(req, resp){
-    db.executeSQL("select AdventureWorks2017.Sales.SalesOrderDetail.SalesOrderID, " 
+    db.executeSQL("select top 1000 AdventureWorks2017.Sales.SalesOrderDetail.SalesOrderID, " 
     +" AdventureWorks2017.Sales.SalesOrderDetail.ProductID," 
     +" AdventureWorks2017.Sales.SalesOrderHeader.RevisionNumber," 
     +" AdventureWorks2017.Sales.SpecialOffer.Description," 
@@ -350,9 +350,8 @@ exports.filtroProcDistribuidores = function(req, resp){
 
 exports.filtroProcVendedores = function(req, resp){
     const par = "'"
-    const coma = ","
 
-    db.executeSQL("Execute procVendedores "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute procVendedores "+par+(req.params.par1)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -368,6 +367,19 @@ exports.filtroProcPersosnCustomer = function(req, resp){
     const coma = ","
 
     db.executeSQL("Execute procPersosnCustomer "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getAllPeopele = function(req, resp){
+    db.executeSQL("select AdventureWorks2017.Person.Person.BusinessEntityID, AdventureWorks2017.Person.Person.FirstName, AdventureWorks2017.Person.Person.LastName "
+    +" from AdventureWorks2017.Person.Person",  function (data, err){
         if(err){
             console.log(err)
         }else{

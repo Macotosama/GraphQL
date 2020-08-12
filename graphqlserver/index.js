@@ -10,7 +10,9 @@ const baseURL = `http://localhost:8000/`
 const baseURL2 = `http://localhost:8000/`
 const baseURL3 = `http://localhost:8000/AllProcutLocation/`
 const baseURL4 = `http://localhost:8000/InforVendedorEnRecursosHumanos/`
-const baseURL5 = `http://localhost:8000/getProcDistribuidores/`
+const baseURL5 = `http://localhost:8000/getProcDistribuidores/` 
+const baseURL6 = `http://localhost:8000/getProcPersosnCustomer/`
+const baseURL7 = `http://localhost:8000/getProcVendedores/`
 const typeDefs =
 ` type Query {
     persons: [Person]
@@ -28,9 +30,16 @@ const typeDefs =
     optenerProcShoppingCartItems: [optenerProcShoppingCartItem]
     optenerProcSalesTaxRates: [optenerProcSalesTaxRate]
     optenerProcDistribuidores(Product: String, Distribuidor: String, BusinessEntityID: Int): [Proveedor] 
-    optenerProcVendedores(FirstName: String, LastName: String, Gender: String, BusinessEntityID: String): [vendedor]
-    optenerProcPersosnCustomer(PersonID: Int ,ProductName: String ,FirstName: String, LastName: String,): [Person]
+    optenerProcVendedores(FullName: String): [vendedor]
+    optenerProcPersosnCustomer(PersonID: Int ,ProductName: String ,FirstName: String, LastName: String): [Person]
+    peoples: [People]
 } 
+
+type People {
+    BusinessEntityID: Int
+    FirstName: String
+    LastName: String
+}
 
 type optenerProcSalesTaxRate {
     SalesTaxRateID: Int
@@ -134,7 +143,6 @@ type vendedor {
     SalesLastYear: Float
     DepartmentName: String
     GroupName: String
-
 }
 
 type Venta {
@@ -253,8 +261,12 @@ const resolvers = {
             const response = await fetch(encodeURI(`${baseURL5}${args.IdentificadorVendedor,arg.Distribuidor,arg.BusinessEntityID}`));
             return response.json();            
             
-        }
-         ,
+        },
+        optenerProcPersosnCustomer:async(_, args) =>{
+            const response = await fetch(encodeURI(`${baseURL6}${args.PersonID,args.ProductName,args.FirstName,args.LastName}`));
+            return response.json();            
+            
+        },
          optenerProcCreditCards:async() =>{
 
             const response = await fetch(`${baseURL}procCreditCard`);
@@ -276,6 +288,18 @@ const resolvers = {
         optenerProcSalesTaxRates:async() =>{
 
             const response = await fetch(`${baseURL}procSalesTaxRate`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        peoples:async() =>{
+
+            const response = await fetch(`${baseURL}getAllPeople`);
+            return response.json();            
+            return fetch(baseURL2).then(res=>res.json())
+        },
+        optenerProcVendedores:async(_, args) =>{
+
+            const response = await fetch(`${baseURL7}${args.FullName}`);
             return response.json();            
             return fetch(baseURL2).then(res=>res.json())
         }
