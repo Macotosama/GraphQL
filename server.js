@@ -34,6 +34,13 @@ app.get('/getAllPeople',persons.getAllPeopele)
 app.get('/getprocInsertarEnAuditoria/:par1',persons.getProcInsertarEnAuditoria)
 app.get('/getProcNoBorrar/:par1',persons.getProNoBorrar)
 app.get('/tablaAuditoria',persons.getTablaAuditoria)
+app.get('/getProcInfrmacionBasicaProduct/:par1',persons.getProcInfrmacionBasicaProduct)
+app.get('/getProcInformacionBasicaPersonCreditCard/:par1',persons.getProcInformacionBasicaPersonCreditCard)
+app.get('/getProcInfomacionBasicaSalesOrderDetail/:par1',persons.getProcInfomacionBasicaSalesOrderDetail)
+app.get('/getProcInformacionBasicaSalesPerson/:par1',persons.getProcInformacionBasicaSalesPerson)
+app.get('/getProcInformacionBasicaCustomers/:par1',persons.getProcInformacionBasicaCustomers)
+app.get('/getProcInformacionBasicaVendor/:par1',persons.getProcInformacionBasicaVendor)
+app.get('/getProcInformacionBasicaVendor2/:par1',persons.getProcInformacionBasicaVendor2)
 var server = app.listen(configPortAndSettings.webPort, function () {
     console.log(`Server is running at ${configPortAndSettings.webPort}`);
 });

@@ -1,7 +1,7 @@
 var db = require('../baseDeDatos/db');
 
 exports.getPersons = function(req, resp){
-    db.executeSQL("select top 100 BusinessEntityID,PersonType,convert(int,NameStyle)NameStyle,Title,FirstName,MiddleName,LastName,Suffix,EmailPromotion,convert (varchar(max),AdditionalContactInfo)AdditionalContactInfo,convert (varchar(max),Demographics)Demographics,rowguid,ModifiedDate from AdventureWorks2017.Person.Person ORDER BY BusinessEntityID ",  function (data, err){
+    db.executeSQL("select top 10000 BusinessEntityID,PersonType,convert(int,NameStyle)NameStyle,Title,FirstName,MiddleName,LastName,Suffix,EmailPromotion,convert (varchar(max),AdditionalContactInfo)AdditionalContactInfo,convert (varchar(max),Demographics)Demographics,rowguid,ModifiedDate from AdventureWorks2017.Person.Person ORDER BY BusinessEntityID ",  function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -67,7 +67,7 @@ exports.getVentas = function(req, resp){
     +" TablaResult.FullNameSalesPerson," 
     +" TablaResult.Bonus," 
     +" TablaResult.SalesLastYear," 
-    +" TablaResult.CommissionPct" 
+    +" (TablaResult.CommissionPct * 100) as CommissionPct" 
     +" from  AdventureWorks2017.Sales.SalesOrderDetail " 
     +" inner join AdventureWorks2017.Sales.SalesOrderHeader" 
     +" on AdventureWorks2017.Sales.SalesOrderDetail.SalesOrderID = AdventureWorks2017.Sales.SalesOrderHeader.SalesOrderID" 
@@ -502,6 +502,102 @@ exports.getTopPeoresVendidos = function(req, resp){
     });
 };
 
+exports.getProcInfrmacionBasicaProduct = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInfrmacionBasicaProduct "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+}; 
+
+exports.getProcInfomacionBasicaSalesOrderDetail = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInfomacionBasicaSalesOrderDetail "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+}; 
+
+exports.getProcInformacionBasicaPersonCreditCard= function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaPersonCreditCard "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getProcInformacionBasicaPersonCreditCard = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaPersonCreditCard "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getProcInformacionBasicaSalesPerson = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaSalesPerson "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+exports.getProcInformacionBasicaCustomers = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaCustomers "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getProcInformacionBasicaVendor = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaVendor "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getProcInformacionBasicaVendor2 = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute procInformacionBasicaVendor2 "+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
 
 
 

@@ -15,6 +15,13 @@ const baseURL6 = `http://localhost:8000/getProcPersosnCustomer/`
 const baseURL7 = `http://localhost:8000/getProcVendedores/`
 const baseURL8 = `http://localhost:8000/getprocInsertarEnAuditoria/`
 const baseURL9 = `http://localhost:8000/getProcNoBorrar/`
+const baseURL10 = `http://localhost:8000/getProcInfrmacionBasicaProduct/`
+const baseURL11 = `http://localhost:8000/getProcInfomacionBasicaSalesOrderDetail/`
+const baseURL12 = `http://localhost:8000/getProcInformacionBasicaPersonCreditCard/`
+const baseURL13 = `http://localhost:8000/getProcInformacionBasicaSalesPerson/`
+const baseURL14 = `http://localhost:8000/getProcInformacionBasicaCustomers/`
+const baseURL15 = `http://localhost:8000/getProcInformacionBasicaVendor/`
+const baseURL16 = `http://localhost:8000/getProcInformacionBasicaVendor2/`
 const typeDefs =
 ` type Query {
     persons: [Person]
@@ -38,7 +45,91 @@ const typeDefs =
     mensajes(Identificador: Int): [Mensaje]
     noborrados(Identificador: Int): [Mensaje]
     auditorias: [auditoria]
+    basicProducts(Identificador: Int): [BasicProduct]
+    basicaSalesOrderDetails(SalesOrderID: Int): [basicaSalesOrderDetail]
+    basicaPersonCreditCards(CreditCardID: Int): [basicaPersonCreditCard]
+    basicaSalesPersons(BusinessEntityID: Int): [basicaSalesPerson]
+    basicaCustomers(BusinessEntityID: Int): [basicaCustomer]
+    basicaVendors(Name: String): [basicaVendor]
+    basicaVendors2(BusinessEntityID: Int): [basicaVendor]
 } 
+type basicaVendor {
+    BusinessEntityID: Int
+    AccountNumber: String
+    Name: String
+    CreditRating: Int
+    PreferredVendorStatus: Int
+    ActiveFlag: Int
+    PurchasingWebServiceURL: String
+    ModifiedDate: String
+}
+type basicaCustomer {
+    CustomerID: Int
+    PersonID: Int
+    StoreID: Int
+    AccountNumber: String
+    rowguid: String
+    ModifiedDate: String
+}
+
+type basicaSalesPerson {
+    BusinessEntityID: Int
+    TerritoryID: Int
+    SalesQuota: Float
+    Bonus: Float
+    CommissionPct: Float
+    SalesYTD: Float
+    SalesLastYear: Float
+    rowguid: String
+    ModifiedDate: String
+}
+
+type basicaPersonCreditCard {
+    BusinessEntityID: Int
+    CreditCardID: Int
+    ModifiedDate: String
+}
+
+type basicaSalesOrderDetail {
+    SalesOrderID: Int
+    SalesOrderDetailID: Int
+    CarrierTrackingNumber: String
+    OrderQty: Int
+    ProductID: String
+    SpecialOfferID: Int
+    UnitPrice: Float
+    UnitPriceDiscount: Float
+    LineTotal: Float
+    rowguid: String
+    ModifiedDate: String
+}
+type BasicProduct {
+    ProductID: Int
+    Name: String
+    ProductNumber: String
+    Color: String
+    SafetyStockLevel: Int
+    ReorderPoint: Int
+    StandardCost: Float
+    ListPrice: Float
+    Size: String
+    SizeUnitMEasureCode: String
+    WeightUnitMEasureCode: String
+    Weight: Float
+    DaysToManufacture: Int
+    ProductLine: String
+    Class: String
+    Style: String
+    ProductSubcategoryID: Int
+    ProductModelID: Int
+    SellStartDate: String
+    SellEndDate: String
+    DiscontinuedDate: String
+    rowguid: String
+    ModifiedDate: String
+
+}
+
 type auditoria {
     idAuditoria: Int
     Tabla: String
@@ -101,6 +192,7 @@ type optenerInformacionTemporalRecusosHumanosPersona {
 }
 
 type Optenerlocacion {
+    ProductID: Int
     Name: String
     Quantity: Int
 }
@@ -332,8 +424,50 @@ const resolvers = {
 
             const response = await fetch(`${baseURL9}${args.Identificador}`);
             return response.json();            
-            return fetch(baseURL2).then(res=>res.json())
+            
         },
+        basicProducts:async(_, args) =>{
+
+            const response = await fetch(`${baseURL10}${args.Identificador}`);
+            return response.json();            
+            
+        },
+        basicaSalesOrderDetails:async(_, args) =>{
+
+            const response = await fetch(`${baseURL11}${args.SalesOrderID}`);
+            return response.json();            
+            
+        },
+        basicaPersonCreditCards:async(_, args) =>{
+
+            const response = await fetch(`${baseURL12}${args.CreditCardID}`);
+            return response.json();            
+            
+        },
+        basicaSalesPersons:async(_, args) =>{
+
+            const response = await fetch(`${baseURL13}${args.BusinessEntityID}`);
+            return response.json();            
+            
+        },
+        basicaCustomers:async(_, args) =>{
+
+            const response = await fetch(`${baseURL14}${args.BusinessEntityID}`);
+            return response.json();            
+            
+        },
+        basicaVendors:async(_, args) =>{
+
+            const response = await fetch(`${baseURL15}${args.Name}`);
+            return response.json();            
+            
+        },
+        basicaVendors2:async(_, args) =>{
+
+            const response = await fetch(`${baseURL16}${args.BusinessEntityID}`);
+            return response.json();            
+            
+        }
 
     },
 }
