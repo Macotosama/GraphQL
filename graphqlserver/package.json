@@ -17,6 +17,6 @@
     "graphql": "^15.3.0",
     "graphql-type-json": "^0.3.2",
     "graphql-yoga": "^1.18.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }
