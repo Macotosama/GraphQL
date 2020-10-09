@@ -1,10 +1,10 @@
     
     // config for your database
 exports.config = {
-    user: 'adventure',
-    password: 'adventure2020',
+    user: 'WideWorldImporters',
+    password: 'WideWorldImporters2020',
     server: 'localhost',
-    database: 'AdventureWorks2017',
+    database: 'WideWorldImporters',
     options: {
         encrypt: false,
        "enableArithAbort": true
