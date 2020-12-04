@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 var db = require('../baseDeDatos/db');
 
 
@@ -84,7 +85,7 @@ exports.getpCrearNevoProducto = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute pCrearNevoProducto "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pCrearNevoProducto "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -175,6 +176,17 @@ exports.getpRetornaProductos = function(req, resp){
     });
 };
 
+exports.getpRetornaProductoNombreIdentificador = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pRetornaProductoNombreIdentificador",function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
 
 exports.getpBuscarNombre = function(req, resp){
     const par = "'"
@@ -314,7 +326,7 @@ exports.getpCrearPersonaCliente = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute pCrearPersonaVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+""+coma+par+(req.params.par7)+par+""+coma+par+(req.params.par8)+par+""+coma+par+(req.params.par9)+par+""+coma+par+(req.params.par10)+par+""+coma+par+(req.params.par11)+par+""+coma+par+(req.params.par12)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pCrearPersonaCliente "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+""+coma+par+(req.params.par7)+par+""+coma+par+(req.params.par8)+par+""+coma+par+(req.params.par9)+par+""+coma+par+(req.params.par10)+par+""+coma+par+(req.params.par11)+par+""+coma+par+(req.params.par12)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -325,11 +337,11 @@ exports.getpCrearPersonaCliente = function(req, resp){
     });
 };
 
-exports.getpBuscarProductoCategoria = function(req, resp){
+exports.getpBuscarProductoCategoriaEnInvenatrio = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute pBuscarProductoCategoria "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pBuscarProductoCategoriaEnInvenatrio "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -338,4 +350,102 @@ exports.getpBuscarProductoCategoria = function(req, resp){
             
         }
     });
+};
+
+exports.getpAgragarAlInventario = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pAgragarAlInventario "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpValidarCantidadRequerida = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pValidarCantidadRequerida "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpCrearOrdenDeCompra = function(req, resp){
+    const par = "'";
+    const coma = ",";
+
+    var XD = req.body;
+    console.log(XD[0].IdCliente)
+    db.executeSQL("Execute pCrearOrdenDeCompra"+par+(XD[0].IdCliente)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+          resp.json(data.recordset)
+        }
+    });
+
+};
+
+
+exports.getpCrearFactura = function(req, resp){
+    const par = "'";
+    const coma = ",";
+
+    var XD = req.body;
+    console.log("Execute pCrearFactura "+par+(XD.order)+par+""+coma+par+(XD.sede)+par+"")
+    console.log(XD.order)
+    console.log(XD.sede)
+     db.executeSQL("Execute pCrearFactura "+par+(XD.order)+par+""+coma+par+(XD.sede)+par+"".toString(),function (data, err){
+         if(err){
+             console.log(err)
+         }else{   
+           resp.json(data.recordset)
+         }
+     });
+
+};
+
+
+exports.getpPagonPorInetervalos = function(req, resp){
+    const par = "'";
+    const coma = ",";
+
+    var XD = req.body;
+    var bandera = true
+    var cont = 1;
+    var ordenDeCompra = XD[0].IdOrdenDeCompra
+    while (bandera) {
+        if(XD[cont] == null) {
+            bandera = !bandera;
+        } else {
+
+            var temp = XD[cont].producto.IdInventario
+            console.log("Execute pPagonPorInetervalos "+par+(ordenDeCompra)+par+""+coma+par+(XD[cont].strock)+par+""+coma+par+(XD[cont].producto.IdInventario)+par+""+coma+par+(XD[cont].producto.precio)+par+"".toString())
+            db.executeSQL("Execute pPagonPorInetervalos "+par+(ordenDeCompra)+par+""+coma+par+(XD[cont].strock)+par+""+coma+par+(XD[cont].producto.IdInventario)+par+""+coma+par+(XD[cont].producto.precio)+par+"".toString(),function (data, err)
+            {
+                if(err){
+                    console.log(err)
+                }else{   
+                    console.log('TRANSACTION...')
+                }
+            });
+
+        }
+        cont++;
+        
+    }
+    resp.json({msg:'Tranasferencia exitosa'})
+
 };
