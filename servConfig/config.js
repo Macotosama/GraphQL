@@ -1,10 +1,11 @@
     
     // config for your database
 exports.config = {
-    user: 'WideWorldImporters',
-    password: 'WideWorldImporters2020',
-    server: 'localhost',
-    database: 'WideWorldImporters',
+    
+    user: 'Base2017',
+    password: 'base2017',
+    server: 'DESKTOP-NALDKC8\\MSSQLSERVER01',
+    database: 'BasePrimaria',
     options: {
         encrypt: false,
        "enableArithAbort": true

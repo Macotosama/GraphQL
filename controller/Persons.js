@@ -1,145 +1,15 @@
 var db = require('../baseDeDatos/db');
 
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-exports.getAllClienteInformation = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllClienteInformation ",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getAllSupierInformation = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllSuplierInformation",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getAllInventaryInformation = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllInventaryInformation",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getAllInvoicesInformation = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllInvoicesInformation",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getMostExpensiveAmountsSupliers = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getMostExpensiveAmountsSupliers"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getLesstExpensiveAmountsSupliers = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getLesstExpensiveAmountsSupliers"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getAVGeAmountsSupliers = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAVGeAmountsSupliers"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getMostExpensiveCustomer = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getMostExpensiveCustomer"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getLessExpensiveCustomer = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getLessExpensiveCustomer"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getAVGExpensiveCustomer = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAVGExpensiveCustomer"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getTopProducts = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getTopProducts",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-exports.getTopProductsFilter = function(req, resp){
+exports.getpValidacionDeCliente = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getTopProductsFilter "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pValidacionDeCliente "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -150,11 +20,11 @@ exports.getTopProductsFilter = function(req, resp){
     });
 };
 
-exports.getMaxCustomesInvoices = function(req, resp){
+exports.getpValidacionDeVendedor = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getMaxCustomesInvoices "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pValidacionDeVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -165,11 +35,95 @@ exports.getMaxCustomesInvoices = function(req, resp){
     });
 };
 
-exports.getMostQuatitySupplierOrders = function(req, resp){
+exports.getpBusquedaProducto = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getMostQuatitySupplierOrders "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pBusquedaProducto "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpCrearNevaCategoria = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearNevaCategoria "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpCrearNevaCategoria = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearNevaCategoria "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpCrearNevoProducto = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearNevoProducto "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpEnviarCategorias = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pEnviarCategorias",function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getpRetornoInventario = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pRetornoInventario",function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+exports.getpUpadateInventario = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pUpadateInventario "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -181,37 +135,11 @@ exports.getMostQuatitySupplierOrders = function(req, resp){
 };
 
 
-exports.getAllCategoryNames = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllCategoryNames",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-
-exports.getAllCategoriesDeliveryMethodNames = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute getAllCategoriesDeliveryMethodNames",function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-
-exports.getAllClienteInformationFilter = function(req, resp){
+exports.getpRetornoFacturas = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getAllClienteInformationFilter "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pRetornoFacturas "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -222,11 +150,37 @@ exports.getAllClienteInformationFilter = function(req, resp){
     });
 };
 
-exports.getAllSuplierInformationFilter = function(req, resp){
+exports.getpRetornaCategorias = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pRetornaCategorias",function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+
+exports.getpRetornaProductos = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pRetornaProductos",function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+
+exports.getpBuscarNombre = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getAllSuplierInformationFilter "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pBuscarNombre "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -237,11 +191,54 @@ exports.getAllSuplierInformationFilter = function(req, resp){
     });
 };
 
-exports.getAllInventaryInformationFilter = function(req, resp){
+exports.getpTotalesDeFacturas = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getAllInventaryInformationFilter "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pTotalesDeFacturas "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpTotalConsolidado = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pTotalConsolidado "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpPagar = function(req, resp){
+    const par = "'"
+
+    db.executeSQL("Execute pPagar"+par+(req.params.par1)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{   
+            resp.json(data.recordset)
+        }
+    });
+};
+
+
+exports.getpCrearPersona = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearPersona "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -253,11 +250,11 @@ exports.getAllInventaryInformationFilter = function(req, resp){
 };
 
 
-exports.getAllInvoicesInformationFilter = function(req, resp){
+exports.getpCrearVendedor = function(req, resp){
     const par = "'"
     const coma = ","
 
-    db.executeSQL("Execute getAllInvoicesInformationFilter "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pCrearVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
@@ -267,38 +264,78 @@ exports.getAllInvoicesInformationFilter = function(req, resp){
         }
     });
 };
-exports.getAllGrups = function(req, resp){
-    const par = "'"
 
-    db.executeSQL("Execute getAllGrups",function (data, err){
+exports.getpCrearCorporativo = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearCorporativo "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
-        }else{   
+        }else{
+           
             resp.json(data.recordset)
+            
         }
     });
 };
 
-exports.getAllSupplierCategories = function(req, resp){
+exports.getpCrearCliente = function(req, resp){
     const par = "'"
+    const coma = ","
 
-    db.executeSQL("Execute getAllSupplierCategories",function (data, err){
+    db.executeSQL("Execute pCrearCliente "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
-        }else{   
+        }else{
+           
             resp.json(data.recordset)
+            
         }
     });
 };
 
-exports.getAllCliente = function(req, resp){
+exports.getpCrearPersonaVendedor = function(req, resp){
     const par = "'"
+    const coma = ","
 
-    db.executeSQL("Execute getAllCliente"+par+(req.params.par1)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pCrearPersonaVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+""+coma+par+(req.params.par7)+par+""+coma+par+(req.params.par8)+par+""+coma+par+(req.params.par9)+par+""+coma+par+(req.params.par10)+par+""+coma+par+(req.params.par11)+par+""+coma+par+(req.params.par12)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
-        }else{   
+        }else{
+           
             resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpCrearPersonaCliente = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pCrearPersonaVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+""+coma+par+(req.params.par7)+par+""+coma+par+(req.params.par8)+par+""+coma+par+(req.params.par9)+par+""+coma+par+(req.params.par10)+par+""+coma+par+(req.params.par11)+par+""+coma+par+(req.params.par12)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
+exports.getpBuscarProductoCategoria = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pBuscarProductoCategoria "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
         }
     });
 };
