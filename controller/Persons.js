@@ -261,52 +261,6 @@ exports.getpCrearPersona = function(req, resp){
     });
 };
 
-
-exports.getpCrearVendedor = function(req, resp){
-    const par = "'"
-    const coma = ","
-
-    db.executeSQL("Execute pCrearVendedor "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{
-           
-            resp.json(data.recordset)
-            
-        }
-    });
-};
-
-exports.getpCrearCorporativo = function(req, resp){
-    const par = "'"
-    const coma = ","
-
-    db.executeSQL("Execute pCrearCorporativo "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{
-           
-            resp.json(data.recordset)
-            
-        }
-    });
-};
-
-exports.getpCrearCliente = function(req, resp){
-    const par = "'"
-    const coma = ","
-
-    db.executeSQL("Execute pCrearCliente "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{
-           
-            resp.json(data.recordset)
-            
-        }
-    });
-};
-
 exports.getpCrearPersonaVendedor = function(req, resp){
     const par = "'"
     const coma = ","
@@ -448,4 +402,74 @@ exports.getpPagonPorInetervalos = function(req, resp){
     }
     resp.json({msg:'Tranasferencia exitosa'})
 
+};
+
+
+
+
+exports.getpCrearCorp = function(req, resp){
+    const par = "'"
+    const coma = ","   
+
+    var XD = req.body;
+    console.log(XD)
+
+    //XD.strock -> esta es la forma de ir insertando los parametros dentro de la consulta
+    //console.log("Execute pCrearCorporativo "+par+(XD.cedula)+par+""+coma+par+(XD.nombre)+par+""+coma+par+(XD.apellido1)+par+""+coma+par+(XD.apellido2)+par+""+coma+par+(XD.telefono)+par+""+coma+par+(XD.correo)+par+""+coma+par+(XD.password)+par+""+coma+par+(XD.senas)+par+""+coma+par+(XD.barrio)+par+""+coma+par+(XD.distrito)+par+""+coma+par+(XD.canton)+par+""+coma+par+(XD.provincia)+par+"".toString())
+    db.executeSQL("Execute pCrearCorporativo "+par+(XD.cedula)+par+""+coma+par+(XD.nombre)+par+""+coma+par+(XD.apellido1)+par+""+coma+par+(XD.apellido2)+par+""+coma+par+(XD.telefono)+par+""+coma+par+(XD.correo)+par+""+coma+par+(XD.password)+par+""+coma+par+(XD.senas)+par+""+coma+par+(XD.barrio)+par+""+coma+par+(XD.distrito)+par+""+coma+par+(XD.canton)+par+""+coma+par+(XD.provincia)+par+"".toString(),function (data, err){
+         if(err){
+            console.log(err)
+         }else{          
+            resp.json(data.recordset)            
+         }
+    });
+};
+
+exports.pValidarSiExiteUnCorporativo = function(req, resp){
+    const par = "'"
+    const coma = ","   
+
+    var XD = req.body;
+    //console.log("Execute pValidarSiExiteUnCorporativo "+par+(XD.cedula)+par+"".toString())
+    db.executeSQL("Execute pValidarSiExiteUnCorporativo "+par+(XD.cedula)+par+"".toString(),function (data, err){
+         if(err){
+            console.log(err)
+         }else{  
+            console.log(data.recordset)        
+            resp.json(data.recordset)
+                       
+         }
+    });
+};
+
+exports.pValidarSiExiteUnCliente = function(req, resp){
+    const par = "'"
+    const coma = ","   
+
+    var XD = req.body;
+    console.log(XD)
+    //console.log("Execute pValidarSiExiteUnCliente "+par+(XD.cedula)+par+"".toString())
+    db.executeSQL("Execute pValidarSiExiteUnCliente "+par+(XD.cedula)+par+"".toString(),function (data, err){
+         if(err){
+            console.log(err)
+         }else{          
+            resp.json(data.recordset)            
+         }
+    });
+};
+
+exports.pValidarSiExiteUnVendedor = function(req, resp){
+    const par = "'"
+    const coma = ","   
+
+    var XD = req.body;
+    console.log(XD)
+    //console.log("Execute pValidarSiExiteUnVendedor "+par+(XD.cedula)+par+"".toString())
+    db.executeSQL("Execute pValidarSiExiteUnVendedor "+par+(XD.cedula)+par+"".toString(),function (data, err){
+         if(err){
+            console.log(err)
+         }else{          
+            resp.json(data.recordset)            
+         }
+    });
 };

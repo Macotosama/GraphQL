@@ -29,9 +29,6 @@ app.get('/getpTotalesDeFacturas/:par1/:par2/:par3/:par4',persons.getpTotalesDeFa
 app.get('/getpTotalConsolidado/:par1/:par2/:par3',persons.getpTotalConsolidado)
 app.get('/getpPagar/:par1',persons.getpPagar)
 app.get('/getpCrearPersona/:par1/:par2/:par3/:par4/:par5/:par6',persons.getpCrearPersona)
-app.get('/getpCrearVendedor/:par1/:par2',persons.getpCrearVendedor)
-app.get('/getpCrearCorporativo/:par1/:par2',persons.getpCrearCorporativo)
-app.get('/getpCrearCliente/:par1/:par2',persons.getpCrearCliente)
 app.get('/getpCrearPersonaVendedor/:par1/:par2/:par3/:par4/:par5/:par6/:par7/:par8/:par9/:par10/:par11/:par12',persons.getpCrearPersonaVendedor)
 app.get('/getpCrearPersonaCliente/:par1/:par2/:par3/:par4/:par5/:par6/:par7/:par8/:par9/:par10/:par11/:par12',persons.getpCrearPersonaCliente)
 app.get('/getpBuscarProductoCategoriaEnInvenatrio/:par1/:par2',persons.getpBuscarProductoCategoriaEnInvenatrio)
@@ -41,12 +38,15 @@ app.get('/getpValidarCantidadRequerida/:par1/:par2',persons.getpValidarCantidadR
 app.post('/getpCrearOrdenDeCompra',persons.getpCrearOrdenDeCompra)
 app.post('/getpCrearFactura',persons.getpCrearFactura)
 app.post('/getpPagonPorInetervalos',persons.getpPagonPorInetervalos)
+app.post('/getpCrearPersonaCorp',persons.getpCrearCorp)
 
-
-app.post('/test',function(req,res){
-    console.log(req.body)
-    res.send({msg: 'Hola'})
-});
+app.post('/getpValidarSiExiteUnCorporativo',persons.pValidarSiExiteUnCorporativo)
+app.post('/getpValidarSiExiteUnCliente',persons.pValidarSiExiteUnCliente)
+app.post('/getpValidarSiExiteUnVendedor',persons.pValidarSiExiteUnVendedor)
+//app.post('/test',function(req,res){
+ //   console.log(req.body)
+//    res.send({msg: 'Hola'})
+//});
 var server = app.listen(configPortAndSettings.webPort, function () {
     console.log(`Server is running at ${configPortAndSettings.webPort}`);
 });
