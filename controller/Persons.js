@@ -36,6 +36,21 @@ exports.getpValidacionDeVendedor = function(req, resp){
     });
 };
 
+exports.getpValidarCorporativo = function(req, resp){
+    const par = "'"
+    const coma = ","
+
+    db.executeSQL("Execute pValidarCorporativo "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+"".toString(),function (data, err){
+        if(err){
+            console.log(err)
+        }else{
+           
+            resp.json(data.recordset)
+            
+        }
+    });
+};
+
 exports.getpBusquedaProducto = function(req, resp){
     const par = "'"
     const coma = ","
@@ -223,34 +238,6 @@ exports.getpTotalConsolidado = function(req, resp){
     const coma = ","
 
     db.executeSQL("Execute pTotalConsolidado "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{
-           
-            resp.json(data.recordset)
-            
-        }
-    });
-};
-
-exports.getpPagar = function(req, resp){
-    const par = "'"
-
-    db.executeSQL("Execute pPagar"+par+(req.params.par1)+par+"".toString(),function (data, err){
-        if(err){
-            console.log(err)
-        }else{   
-            resp.json(data.recordset)
-        }
-    });
-};
-
-
-exports.getpCrearPersona = function(req, resp){
-    const par = "'"
-    const coma = ","
-
-    db.executeSQL("Execute pCrearPersona "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+""+coma+par+(req.params.par5)+par+""+coma+par+(req.params.par6)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
