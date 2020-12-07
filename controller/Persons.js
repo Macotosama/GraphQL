@@ -156,7 +156,7 @@ exports.getpRetornoFacturas = function(req, resp){
     const coma = ","
     var XD = req.body;
     console.log(XD)
-    db.executeSQL("Execute pRetornoFacturas "+par+(XD.tempName)+par+""+coma+par+(XD.tempD)+par+""+coma+par+(XD.tempFac)+par+"".toString(),function (data, err){
+    db.executeSQL("Execute pRetornoFacturas "+par+(XD.nombre)+par+""+coma+par+(XD.fecha)+par+""+coma+par+(XD.factura)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
