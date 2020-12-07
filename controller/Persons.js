@@ -221,8 +221,9 @@ exports.getpBuscarNombre = function(req, resp){
 exports.getpTotalesDeFacturas = function(req, resp){
     const par = "'"
     const coma = ","
-
-    db.executeSQL("Execute pTotalesDeFacturas "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+""+coma+par+(req.params.par4)+par+"".toString(),function (data, err){
+    var XD = req.body;
+    console.log(XD)
+    db.executeSQL("Execute pTotalesDeFacturas "+par+(XD.categoria)+par+""+coma+par+(XD.fecha1)+par+""+coma+par+(XD.fecha2)+par+""+coma+par+(XD.sede)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
