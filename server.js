@@ -22,7 +22,7 @@ app.get('/getpCrearNevoProducto/:par1/:par2/:par3/:par4/:par5',persons.getpCrear
 app.get('/getpEnviarCategorias',persons.getpEnviarCategorias)
 app.get('/getpRetornoInventario',persons.getpRetornoInventario)
 app.get('/getpUpadateInventario/:par1/:par2/:par3',persons.getpUpadateInventario)
-app.get('/getpRetornoFacturas/:par1/:par2/:par3',persons.getpRetornoFacturas)
+app.post('/getpRetornoFacturas',persons.getpRetornoFacturas)
 app.get('/getpRetornaCategorias',persons.getpRetornaCategorias)
 app.get('/getpRetornaProductos',persons.getpRetornaProductos)
 app.get('/getpBuscarNombre/:par1/:par2',persons.getpBuscarNombre)

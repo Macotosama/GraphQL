@@ -154,8 +154,9 @@ exports.getpUpadateInventario = function(req, resp){
 exports.getpRetornoFacturas = function(req, resp){
     const par = "'"
     const coma = ","
-
-    db.executeSQL("Execute pRetornoFacturas "+par+(req.params.par1)+par+""+coma+par+(req.params.par2)+par+""+coma+par+(req.params.par3)+par+"".toString(),function (data, err){
+    var XD = req.body;
+    console.log(XD)
+    db.executeSQL("Execute pRetornoFacturas "+par+(XD.tempName)+par+""+coma+par+(XD.tempD)+par+""+coma+par+(XD.tempFac)+par+"".toString(),function (data, err){
         if(err){
             console.log(err)
         }else{
